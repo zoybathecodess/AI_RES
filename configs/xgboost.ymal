@@ -1,0 +1,26 @@
+# configs/xgboost.yaml
+data:
+train_csv: data/train.csv # must contain a datetime column and target
+datetime_col: ds
+target_col: y
+feature_cols: null # null means use all except datetime and target
+model:
+framework: xgboost
+n_estimators: 500
+max_depth: 6
+learning_rate: 0.05
+subsample: 0.8
+colsample_bytree: 0.8
+random_state: 42
+training:
+metric: rmse
+early_stopping_rounds: 50
+verbose: 1
+cv:
+initial_train_period: 365 # in days (or rows if using integer split)
+horizon: 90
+step: 90
+output:
+model_dir: models/
+logs_csv: logs/experiments.csv
+metrics_csv: results/metrics/baseline_vs_models.csv
